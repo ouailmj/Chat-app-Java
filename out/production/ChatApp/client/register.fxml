@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Register">
+    <children>
+        <ImageView fitHeight="480.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@winter.jpg" />
+            </image>
+        </ImageView>
+        <Pane layoutX="110.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="500.0" style="-fx-background-color: #777884; -fx-border-radius: 8px; -fx-background-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label layoutX="132.0" layoutY="314.0" text="gender" textFill="WHITE">
+                    <font>
+                        <Font name="Verdana" size="18.0" />
+                    </font>
+                </Label>
+                <JFXRadioButton layoutX="212.0" layoutY="317.0" text="Male" textFill="#bebfc1" />
+                <JFXRadioButton layoutX="282.0" layoutY="317.0" text="Female" textFill="#bebfc1" />
+                <JFXButton layoutX="124.0" layoutY="364.0" onAction="#inscription" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: #7289da;" text="SIgn Up !" textFill="WHITE">
+                    <font>
+                        <Font name="Trebuchet MS" size="18.0" />
+                    </font>
+                </JFXButton>
+                <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="124.0" layoutY="126.0" prefHeight="40.0" prefWidth="252.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-color: #565a60;">
+                    <children>
+                        <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="ENVELOPE_ALT" size="1.2em" text="" wrappingWidth="10.0" />
+                        <TextField id="usernameRegister" fx:id="usernameRegister" prefHeight="30.0" prefWidth="189.0" promptText="Username" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="124.0" layoutY="183.0" prefHeight="40.0" prefWidth="252.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-color: #565a60;">
+                    <children>
+                        <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="LOCK" />
+                        <PasswordField id="passwordRegister" fx:id="passwordRegister" prefHeight="30.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </PasswordField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="124.0" layoutY="240.0" prefHeight="40.0" prefWidth="252.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-color: #565a60;">
+                    <children>
+                        <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="LOCK" />
+                        <PasswordField id="confirmPassword" fx:id="confirmPassword" prefHeight="30.0" prefWidth="214.0" promptText="Confirm Password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </PasswordField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <Label layoutX="173.0" layoutY="14.0" prefHeight="57.0" prefWidth="78.0" text="Say" textFill="#5cc1f8">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="48.0" />
+                    </font>
+                </Label>
+                <Label layoutX="250.0" layoutY="14.0" text="Hi!" textFill="#f5ba13">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="48.0" />
+                    </font>
+                </Label>
+                <Label layoutX="175.0" layoutY="75.0" text="Inscription" textFill="WHITE">
+                    <font>
+                        <Font name="Verdana" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

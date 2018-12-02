@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Login">
+    <children>
+        <Pane focusTraversable="true" layoutX="360.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #777884; -fx-background-radius: 8px; -fx-border-radius: 8px;">
+            <children>
+                <Label layoutX="92.0" layoutY="59.0" text="Welcome !" textFill="WHITE">
+                    <font>
+                        <Font name="Verdana" size="20.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="123.0" prefHeight="40.0" prefWidth="252.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-color: #565a60;">
+                    <children>
+                        <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="ENVELOPE_ALT" size="1.2em" text="" wrappingWidth="10.0" />
+                        <TextField id="user" fx:id="user" prefHeight="30.0" prefWidth="189.0" promptText="Username" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="180.0" prefHeight="40.0" prefWidth="252.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-color: #565a60;">
+                    <children>
+                        <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="LOCK" />
+                        <PasswordField prefHeight="30.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" fx:id="password" id="password">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </PasswordField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <JFXButton layoutX="28.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#signIn" prefHeight="40.0" prefWidth="117.0" ripplerFill="WHITE" style="-fx-background-color: #7289da; -fx-background-radius: 5px;" text="Sign In" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXCheckBox layoutX="165.0" layoutY="278.0" text="Remember Me" textFill="WHITE" unCheckedColor="#bebfc1" />
+                <JFXButton layoutX="24.0" layoutY="219.0" prefHeight="25.0" prefWidth="149.0" ripplerFill="WHITE" text="FORGET PASSWORD?" textFill="#122668" underline="true">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="12.0" />
+                    </font>
+                </JFXButton>
+            </children>
+        </Pane>
+        <Pane prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #36393f;">
+            <children>
+                <Label layoutX="64.0" layoutY="115.0" prefHeight="57.0" prefWidth="78.0" text="Say" textFill="#5cc1f8">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="48.0" />
+                    </font>
+                </Label>
+                <TextFlow layoutX="18.0" layoutY="187.0" prefHeight="122.0" prefWidth="267.0" textAlignment="CENTER">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="202.0" text="Say Hi is a messaging" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Comic Sans MS" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="10.0" prefHeight="37.0" prefWidth="245.0" text="app that help you to connect" textAlignment="CENTER" textFill="#f8f8f8">
+                            <font>
+                                <Font name="Comic Sans MS" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="10.0" prefHeight="37.0" prefWidth="202.0" text="with  your friends !!" textAlignment="CENTER" textFill="#f8f8f8">
+                            <font>
+                                <Font name="Comic Sans MS" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </TextFlow>
+                <JFXButton layoutX="75.0" layoutY="309.0" onAction="#signUp" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #00782e;" text="Sign Up Here" textFill="#002294">
+                    <font>
+                        <Font name="Arial" size="18.0" />
+                    </font>
+                </JFXButton>
+                <Label layoutX="142.0" layoutY="115.0" text="Hi!" textFill="#f5ba13">
+                    <font>
+                        <Font name="Trebuchet MS Bold" size="48.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
