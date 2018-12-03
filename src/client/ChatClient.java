@@ -1,24 +1,28 @@
 package client;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
-public class ChatClient extends Application {
+public class ChatClient {
+    BufferedReader in;
+    PrintWriter out;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        primaryStage.setTitle("Say Hi!");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+    ChatClient() throws IOException {
+
+        Socket socket = new Socket("127.0.0.1", 9010);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        out = new PrintWriter(socket.getOutputStream(), true);
 
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    public boolean connect(String username, String password) throws IOException {
+        out.println("connect " + username + ";" + password);
+        if (in.readLine().equals("registered")) {
+            return true;
+        } else return false;
     }
+
 }

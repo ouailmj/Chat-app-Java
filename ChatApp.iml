@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Bureau/jfoenix-9.0.8.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/jar_files (1)/fontawesomefx-8.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,16 +19,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Bureau/fontawesomefx-8.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Bureau/jfoenix-8.0.7.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JFoenix-master/JFoenix-master/jfoenix.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
