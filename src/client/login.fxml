@@ -4,22 +4,24 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="500.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Login">
+<AnchorPane prefHeight="500.0" prefWidth="720.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-image: url('file:/home/ouail/Documents/ChatApp/src/cover.jpg'); -fx-background-repeat: stretch; -fx-background-size: 800 500;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Login">
     <children>
-        <Pane focusTraversable="true" layoutX="360.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #777884; -fx-background-radius: 8px; -fx-border-radius: 8px;">
+        <Pane focusTraversable="true" layoutX="360.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: rgba(119,120,132,0.9); -fx-background-radius: 8px; -fx-border-radius: 8px;">
             <children>
                 <Label layoutX="92.0" layoutY="59.0" text="Welcome !" textFill="WHITE">
                     <font>
-                        <Font name="Verdana" size="20.0" />
+                        <Font name="Droid Sans Mono Slashed" size="21.0" />
                     </font>
                 </Label>
                 <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="123.0" prefHeight="40.0" prefWidth="252.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-color: #565a60;">
@@ -41,7 +43,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="180.0" prefHeight="40.0" prefWidth="252.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-color: #565a60;">
                     <children>
                         <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="LOCK" />
-                        <PasswordField prefHeight="30.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" fx:id="password" id="password">
+                        <PasswordField id="password" fx:id="password" prefHeight="30.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>
@@ -60,14 +62,17 @@
                     </font>
                 </JFXButton>
                 <JFXCheckBox layoutX="165.0" layoutY="278.0" text="Remember Me" textFill="WHITE" unCheckedColor="#bebfc1" />
-                <JFXButton layoutX="24.0" layoutY="219.0" prefHeight="25.0" prefWidth="149.0" ripplerFill="WHITE" text="FORGET PASSWORD?" textFill="#122668" underline="true">
-                    <font>
-                        <Font name="Microsoft Sans Serif" size="12.0" />
-                    </font>
+                <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="232.0" prefHeight="25.0" prefWidth="149.0" ripplerFill="WHITE" text="FORGET PASSWORD?" textAlignment="CENTER" textFill="#122668" textOverrun="LEADING_ELLIPSIS" underline="true">
+               <font>
+                  <Font size="12.0" />
+               </font>
                 </JFXButton>
             </children>
+         <effect>
+            <Blend mode="SCREEN" opacity="0.0" />
+         </effect>
         </Pane>
-        <Pane prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #36393f;">
+        <Pane prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: rgba(54,57,63,0.9);">
             <children>
                 <Label layoutX="64.0" layoutY="115.0" prefHeight="57.0" prefWidth="78.0" text="Say" textFill="#5cc1f8">
                     <font>
@@ -93,10 +98,13 @@
                         </Label>
                     </children>
                 </TextFlow>
-                <JFXButton layoutX="75.0" layoutY="309.0" onAction="#signUp" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #00782e;" text="Sign Up Here" textFill="#002294">
+                <JFXButton layoutX="75.0" layoutY="309.0" onAction="#signUp" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #e6e6e6;" text="Sign Up Here" textFill="#666666">
                     <font>
                         <Font name="Arial" size="18.0" />
                     </font>
+               <cursor>
+                  <Cursor fx:constant="MOVE" />
+               </cursor>
                 </JFXButton>
                 <Label layoutX="142.0" layoutY="115.0" text="Hi!" textFill="#f5ba13">
                     <font>
