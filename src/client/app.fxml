@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
@@ -29,6 +28,8 @@
             </children>
         </Pane>
         <TextField layoutX="147.0" layoutY="520.0" prefHeight="51.0" prefWidth="596.0" promptText="Type your message here" />
-        <TextFlow layoutX="147.0" layoutY="1.0" prefHeight="511.0" prefWidth="596.0" style="-fx-background-color: #DDDDDD;" />
+        <TextFlow id="tofl" fx:id="tofl" layoutX="147.0" layoutY="1.0" prefHeight="511.0" prefWidth="596.0"
+                  style="-fx-background-color: #DDDDDD;"/>
+        <JFXButton layoutX="677.0" layoutY="533.0" onAction="#send" style="-fx-background-color: #0000FF;" text="send"/>
     </children>
 </AnchorPane>
