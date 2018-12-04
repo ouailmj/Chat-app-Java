@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class Login {
@@ -23,6 +24,10 @@ public class Login {
     private PasswordField password;
 
     @FXML
+    void changement(KeyEvent event) {
+        user.setStyle("-fx-prompt-text-fill: red");
+    }
+        @FXML
     void signIn(ActionEvent event) throws IOException {
         String line = null;
         registered = ChatMain.chatClient.connect(user.getText(), password.getText());
@@ -53,4 +58,6 @@ public class Login {
 
     }
 
+    public void changement(javafx.scene.input.KeyEvent keyEvent) {
+    }
 }
