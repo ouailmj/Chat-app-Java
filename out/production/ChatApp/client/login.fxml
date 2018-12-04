@@ -5,19 +5,22 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="500.0" prefWidth="720.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-image: url('file:/home/ouail/Documents/ChatApp/src/cover.jpg'); -fx-background-repeat: stretch; -fx-background-size: 800 500;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Login">
+<AnchorPane prefHeight="416.0" prefWidth="644.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-image: url('file:/home/ouail/Documents/ChatApp/src/cover.jpg'); -fx-background-size: 800 500;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Login">
     <children>
-        <Pane focusTraversable="true" layoutX="360.0" layoutY="50.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: rgba(119,120,132,0.9); -fx-background-radius: 8px; -fx-border-radius: 8px;">
+        <Pane focusTraversable="true" layoutX="360.0" layoutY="50.0" prefHeight="374.0" prefWidth="300.0" style="-fx-background-color: rgba(119,120,132,0.9); -fx-background-radius: 8px; -fx-border-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 12,0.2, 1, 1);">
             <children>
                 <Label layoutX="92.0" layoutY="59.0" text="Welcome !" textFill="WHITE">
                     <font>
@@ -43,7 +46,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="180.0" prefHeight="40.0" prefWidth="252.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-color: #565a60;">
                     <children>
                         <FontAwesomeIcon glyphStyle="-fx-fill:#BEBFC1" iconName="LOCK" />
-                        <PasswordField id="password" fx:id="password" prefHeight="30.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                        <PasswordField id="password" fx:id="password" prefHeight="30.0" prefWidth="214.0" promptText="Password" style="-fx-background-color: transparent; -fx-text-fill: rgb(255, 255,255);" HBox.hgrow="ALWAYS">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>
@@ -61,7 +64,7 @@
                         <Font name="Microsoft Sans Serif" size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXCheckBox layoutX="165.0" layoutY="278.0" text="Remember Me" textFill="WHITE" unCheckedColor="#bebfc1" />
+                <JFXCheckBox checkedColor="#c9b2b2" layoutX="165.0" layoutY="278.0" text="Remember Me" textFill="WHITE" unCheckedColor="#496190" />
                 <JFXButton buttonType="RAISED" layoutX="74.0" layoutY="232.0" prefHeight="25.0" prefWidth="149.0" ripplerFill="WHITE" text="FORGET PASSWORD?" textAlignment="CENTER" textFill="#122668" textOverrun="LEADING_ELLIPSIS" underline="true">
                <font>
                   <Font size="12.0" />
@@ -72,7 +75,7 @@
             <Blend mode="SCREEN" opacity="0.0" />
          </effect>
         </Pane>
-        <Pane prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: rgba(54,57,63,0.9);">
+        <Pane prefHeight="506.0" prefWidth="300.0" style="-fx-background-color: rgba(54,57,63,0.95);">
             <children>
                 <Label layoutX="64.0" layoutY="115.0" prefHeight="57.0" prefWidth="78.0" text="Say" textFill="#5cc1f8">
                     <font>
@@ -81,7 +84,7 @@
                 </Label>
                 <TextFlow layoutX="18.0" layoutY="187.0" prefHeight="122.0" prefWidth="267.0" textAlignment="CENTER">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="202.0" text="Say Hi is a messaging" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="202.0" text="SayHi is a messaging" textAlignment="CENTER" textFill="WHITE">
                             <font>
                                 <Font name="Comic Sans MS" size="18.0" />
                             </font>
@@ -113,5 +116,11 @@
                 </Label>
             </children>
         </Pane>
+      <Button layoutX="688.0" layoutY="2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+      <ImageView fx:id="closeButton" fitHeight="34.0" fitWidth="42.0" layoutX="686.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('/home/ouail/Documents/ChatApp/src/icon.png');" AnchorPane.bottomAnchor="472.0">
+         <image>
+            <Image url="@../icon.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

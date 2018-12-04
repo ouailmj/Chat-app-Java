@@ -1,4 +1,8 @@
 #user {
     -fx-text-inner-color: white;
 }
+#password{
+    -fx-text-inner-color: white;
+-fx-opacity: 1.0;
 
+}
