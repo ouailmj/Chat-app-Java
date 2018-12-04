@@ -58,6 +58,16 @@ public class Login {
 
     }
 
+    @FXML
+    public void closeprog(ActionEvent event) throws IOException {
+
+        Stage mainWindow;
+        mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainWindow.close();
+    }
+
     public void changement(javafx.scene.input.KeyEvent keyEvent) {
     }
+
+
 }

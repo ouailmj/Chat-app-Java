@@ -6,3 +6,6 @@
 -fx-opacity: 1.0;
 
 }
+#close{
+-fx-background-image: url('/home/ouail/Documents/Chat-app-Java/src/icon.jpg');
+}
