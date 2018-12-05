@@ -18,14 +18,14 @@
     <children>
         <Pane layoutX="335.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="469.0" style="-fx-background-color: rgba(119,120,132,0.8); -fx-border-radius: 8px; -fx-background-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="10.0">
             <children>
-                <Label layoutX="117.0" layoutY="361.0" text="gender" textFill="WHITE">
+                <Label layoutX="118.0" layoutY="383.0" text="gender" textFill="WHITE">
                     <font>
                         <Font name="Verdana" size="18.0" />
                     </font>
                 </Label>
-                <JFXRadioButton ellipsisString="" layoutX="197.0" layoutY="364.0" text="Male" textFill="WHITE" />
-                <JFXRadioButton layoutX="267.0" layoutY="364.0" text="Female" textFill="#fefeff" textOverrun="CLIP" />
-                <JFXButton layoutX="56.0" layoutY="411.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: #7289da;" text="SIgn Up !" textFill="WHITE">
+                <JFXRadioButton ellipsisString="" layoutX="198.0" layoutY="386.0" text="Male" textFill="WHITE" />
+                <JFXRadioButton layoutX="268.0" layoutY="386.0" text="Female" textFill="#fefeff" textOverrun="CLIP" />
+                <JFXButton layoutX="57.0" layoutY="433.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: #7289da;" text="SIgn Up !" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS" size="18.0" />
                     </font>
@@ -109,11 +109,15 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <JFXButton layoutX="236.0" layoutY="411.0" onAction="#retour" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #ef572d;" text="Cancel" textFill="WHITE">
+            <JFXButton layoutX="237.0" layoutY="433.0" onAction="#retour" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #ef572d;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Trebuchet MS" size="18.0" />
                </font>
             </JFXButton>
+            <TextField id="erreur" fx:id="erreur" layoutX="97.0" layoutY="355.0" prefHeight="28.0" prefWidth="302.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-inner-color: red;" stylesheets="@../text.css">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></TextField>
             </children>
         </Pane>
         <Button fx:id="close" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" layoutX="871.0" mnemonicParsing="false" onAction="#closeprog" prefHeight="18.0" prefWidth="34.0" style="-fx-background-color: rgb(201, 209, 221,0.6);" text="X" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS">
