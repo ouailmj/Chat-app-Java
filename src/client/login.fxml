@@ -28,7 +28,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="123.0" prefHeight="40.0" prefWidth="252.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-color: #565a60;">
                     <children>
                         <FontAwesomeIcon id="message" glyphStyle="-fx-fill:#BEBFC1" iconName="ENVELOPE_ALT" size="1.2em" text="" wrappingWidth="10.0" />
-                        <TextField id="user" fx:id="user" onKeyPressed="#changement" prefHeight="30.0" prefWidth="189.0" promptText="Username" style="-fx-background-color: transparent;" stylesheets="@../text.css" HBox.hgrow="ALWAYS">
+                        <TextField id="user" fx:id="user" prefHeight="30.0" prefWidth="189.0" promptText="Username" style="-fx-background-color: transparent;" stylesheets="@../text.css" HBox.hgrow="ALWAYS">
                             <HBox.margin>
                                 <Insets left="5.0" />
                             </HBox.margin>

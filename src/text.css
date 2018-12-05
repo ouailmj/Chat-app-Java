@@ -6,6 +6,7 @@
 -fx-opacity: 1.0;
 
 }
-#close{
--fx-background-image: url('/home/ouail/Documents/Chat-app-Java/src/icon.jpg');
+.registerText{
+    -fx-text-inner-color: white;
+    -fx-text-fill: rgb(255, 255,255);
 }
