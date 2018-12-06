@@ -15,7 +15,6 @@ public class ChatClient {
         Socket socket = new Socket("127.0.0.1", 9010);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
-
     }
 
     public boolean connect(String username, String password) throws IOException {

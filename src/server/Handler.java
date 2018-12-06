@@ -1,6 +1,11 @@
 package server;
 
-import java.io.*;
+import provider.ApiCrud;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Handler extends Thread {
@@ -14,38 +19,32 @@ public class Handler extends Thread {
 
     public void run() {
         try {
+
             in = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
 
             while (true) {
-                String inLine = in.readLine();
-                if (inLine.startsWith("connect")) {
-                    String line = null;
-                    try {
-                        FileReader fileReader = new FileReader("Inscription_data");
-                        BufferedReader reader = new BufferedReader(fileReader);
-                        while ((line = reader.readLine()) != null) {
-                            String information = inLine.substring(8);
-                            if (line.equals(information)) {
-                                out.println("registered");
-                                break;
-                            }
-                        }
-                    } catch (IOException exept) {
-                        System.out.println("nothing here");
-                    }
-
-
-                }
+                verification();
             }
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
 
+    public void verification() throws IOException {
+        String inLine = in.readLine();
+        if (inLine.startsWith("connect")) {
+            String information = inLine.substring(8);
+            String[] infos = information.split(";");
+            ApiCrud crud = new ApiCrud();
+            if(crud.Verification_data_user(infos[0],infos[1]))
+                out.println("registered");
+            else
+                out.println("unregistered");
+        }
+    }
 }
-
 
 
 

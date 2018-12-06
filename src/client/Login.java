@@ -28,13 +28,11 @@ public class Login {
     void signIn(ActionEvent event) throws IOException {
         String line = null;
         registered = ChatMain.chatClient.connect(user.getText(), password.getText());
-
         if (!registered) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("wrong Information");
             alert.setHeaderText(null);
             alert.setContentText("incorrect username or password");
-
             alert.showAndWait();
         } else {
             App.loadScreen(event);
