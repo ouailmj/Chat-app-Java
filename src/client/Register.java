@@ -16,6 +16,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register {
+
+    public static boolean register = false;
+
     @FXML
     TextField usernameRegister;
     @FXML
@@ -53,14 +56,18 @@ public class Register {
         String passwordRegisterText = passwordRegister.getText();
         String confirmPasswordText = confirmPassword.getText();
         if(emailRegister.getText().trim().isEmpty() || passwordRegister.getText().trim().isEmpty() || confirmPassword.getText().trim().isEmpty() || usernameRegister.getText().trim().isEmpty()){
-            if(emailRegister.getText().trim().isEmpty())
+            if(emailRegister.getText().trim().isEmpty()) {
                 emailRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            if(usernameRegister.getText().trim().isEmpty())
+            }
+            if(usernameRegister.getText().trim().isEmpty()) {
                 usernameRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            if(passwordRegister.getText().trim().isEmpty())
+            }
+            if(passwordRegister.getText().trim().isEmpty()) {
                 passwordRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            if(confirmPassword.getText().trim().isEmpty())
+            }
+            if(confirmPassword.getText().trim().isEmpty()) {
                 confirmPassword.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+            }
             erreur.setText("Veuillez remplir tout les champs");
 
         }else {
@@ -71,11 +78,21 @@ public class Register {
                 else {
                     try {
 
-                        PrintWriter writer = new PrintWriter(new FileWriter("Inscription_data", true));
-                        System.out.println(usernameRegister.getText() + ";" + passwordRegisterText);
-                        writer.println(usernameRegister.getText() + ";" + passwordRegisterText);
-                        writer.close();
-                        ouvrirFenetre(event, "login.fxml");
+                        register = ChatMain.chatClient.register(usernameRegister.getText(), passwordRegister.getText(),confirmPassword.getText(),emailRegister.getText());
+                        if(!register){
+                            erreur.setText("User existe deja");
+                        }
+                        else{
+                            Parent signUpWindow;
+                            signUpWindow = FXMLLoader.load(getClass().getResource("login.fxml"));
+
+                            Stage mainWindow;
+                            mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                            Scene newScene = new Scene(signUpWindow);
+
+                            mainWindow.setScene(newScene);
+                        }
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();

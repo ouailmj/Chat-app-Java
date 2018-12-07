@@ -1,7 +1,9 @@
 package provider;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ApiCrud {
 
@@ -37,9 +39,25 @@ public class ApiCrud {
         return null;
     }
 
-    public static void main(String[] args){
+    public boolean add_data_user(String username, String password , String email) {
+        DB_connection db = new DB_connection();
+        Connection con = db.get_Connection();
+        try {
+            String query = "INSERT INTO public.user (username,password,email) VALUES ('" + username + "', '" + password + "', '" + email + "')";
+            PreparedStatement post = con.prepareStatement(query);
+            post.executeUpdate();
+            post.close();
+            db.close_Connection();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+        public static void main(String[] args){
         ApiCrud crud = new ApiCrud();
-        System.out.println(crud.get_data_user("ouail","dqouail1"));
+        System.out.println(crud.add_data_user("aniss","dqouail1","aniss@gmail.com"));
     }
 
 }

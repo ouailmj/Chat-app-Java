@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +17,9 @@ import java.io.IOException;
 public class Login {
 
     public static boolean registered = false;
+
+    @FXML
+    private AnchorPane load;
 
     @FXML
     private TextField user;
@@ -28,24 +31,20 @@ public class Login {
     private TextField erreur;
 
     @FXML
-    private ImageView gif;
-
-    @FXML
     void signIn(ActionEvent event) throws IOException {
         String line = null;
         if(user.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
-            gif.setStyle("-fx-opacity:1");
+            load.setStyle("visibility:true");
             erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
             erreur.setText("Veuillez remplir tout les champs");
         }
         else{
-            gif.setStyle("visibility:true");
+            load.setStyle("visibility:true");
             registered = ChatMain.chatClient.connect(user.getText(), password.getText());
             if (!registered) {
-                gif.setStyle("visibility:false");
                 erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
                 erreur.setText("Username ou mot de pass incorrect");
-            } else {
+             } else {
                 App.loadScreen(event);
             }
         }

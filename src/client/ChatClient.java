@@ -19,10 +19,12 @@ public class ChatClient {
 
     public boolean connect(String username, String password) throws IOException {
         out.println("connect " + username + ";" + password);
-        if (in.readLine().equals("registered")) {
-            return true;
-        } else
-            return false;
+        return in.readLine().equals("registered");
+    }
+
+    public boolean register(String username, String password , String confirm , String email) throws IOException {
+        out.println("register " + username + ";" + password + ";" + confirm + ";" + email);
+        return !in.readLine().equals("registered");
     }
 
 }

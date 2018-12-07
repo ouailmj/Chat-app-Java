@@ -2,11 +2,12 @@ package provider;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DB_connection {
+    public Connection con = null;
 
     public Connection get_Connection() {
-        Connection con = null;
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -20,6 +21,10 @@ public class DB_connection {
         }
 
         return con;
+    }
+
+    public void close_Connection() throws SQLException {
+        con.close();
     }
 
 }

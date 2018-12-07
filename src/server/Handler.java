@@ -37,6 +37,18 @@ public class Handler extends Thread {
                         out.println("unregistered");
                     }
                 }
+                else if(inLine.startsWith("register")){
+                    String information = inLine.substring(9);
+                    String[] infos = information.split(";");
+                    User user = new User(infos[0],infos[1],infos[3]);
+                    if(!user.Verification_data_user(infos[0],infos[1])){
+                        user.Add_data_user();
+                        out.println("unregistered");
+                    }
+                    else{
+                        out.println("registered");
+                    }
+                }
             }
         }catch (Exception e){
             System.out.println(e);

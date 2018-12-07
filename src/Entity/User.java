@@ -19,15 +19,10 @@ public class User {
     final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSX";
     final SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT);
 
-    public User(int id, String username, String password, String email, String nom, boolean sexe, String photo, Date birth) {
-        this.id = id;
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.nom = nom;
-        this.sexe = sexe;
-        this.photo = photo;
-        this.birth = birth;
         System.out.println("nouvelle utilisateur");
     }
 
@@ -76,6 +71,12 @@ public class User {
         ApiCrud crud = new ApiCrud();
         return crud.get_data_user(username, password) != null;
     }
+
+    public boolean Add_data_user() throws SQLException, ParseException {
+        ApiCrud crud = new ApiCrud();
+        return crud.add_data_user(this.username,this.password,this.email);
+    }
+
     public static void main(String[] args) throws SQLException, ParseException {
         User user = new User("ouail","ouaillsq");
     }

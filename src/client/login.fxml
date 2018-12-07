@@ -10,8 +10,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -75,11 +73,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <ImageView fx:id="gif" fitHeight="73.0" fitWidth="78.0" layoutX="109.0" layoutY="330.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0;">
-               <image>
-                  <Image url="@../../Spinner-1s-200px.gif" />
-               </image>
-            </ImageView>
+            <AnchorPane fx:id="load" layoutX="118.0" layoutY="316.0" prefHeight="57.0" prefWidth="65.0" style="-fx-background-image: url(&quot;file:/home/ouail/Documents/Chat-app-Java/Spinner-1s-200px.gif&quot;); visibility: false;" />
             </children>
          <effect>
             <Blend mode="SCREEN" opacity="0.0" />
