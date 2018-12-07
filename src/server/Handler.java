@@ -1,12 +1,13 @@
 package server;
 
-import provider.ApiCrud;
+import Entity.User;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 public class Handler extends Thread {
     Socket socket;
@@ -25,25 +26,26 @@ public class Handler extends Thread {
             out = new PrintWriter(socket.getOutputStream(), true);
 
             while (true) {
-                verification();
+                String inLine = in.readLine();
+                if (inLine.startsWith("connect")) {
+                    String information = inLine.substring(8);
+                    String[] infos = information.split(";");
+                    User user = new User(infos[0],infos[1]);
+                    if(user.Verification_data_user(infos[0],infos[1]))
+                        out.println("registered");
+                    else{
+                        out.println("unregistered");
+                    }
+                }
             }
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        }catch (Exception e){
+            System.out.println(e);
         }
+    }
+    public static void main(String[] args) throws SQLException, ParseException {
+        User user = new User("dqlkh","ouail");
     }
 
-    public void verification() throws IOException {
-        String inLine = in.readLine();
-        if (inLine.startsWith("connect")) {
-            String information = inLine.substring(8);
-            String[] infos = information.split(";");
-            ApiCrud crud = new ApiCrud();
-            if(crud.Verification_data_user(infos[0],infos[1]))
-                out.println("registered");
-            else
-                out.println("unregistered");
-        }
-    }
 }
 
 

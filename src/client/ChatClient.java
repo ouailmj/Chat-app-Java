@@ -21,7 +21,8 @@ public class ChatClient {
         out.println("connect " + username + ";" + password);
         if (in.readLine().equals("registered")) {
             return true;
-        } else return false;
+        } else
+            return false;
     }
 
 }

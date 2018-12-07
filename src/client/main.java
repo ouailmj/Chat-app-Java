@@ -1,6 +1,7 @@
 package client;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class main {
 
@@ -18,8 +19,9 @@ public class main {
             String password = "ouail1";
             Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/JavaApp","ouail","OUAIL");
             ResultSet rs = con.createStatement().executeQuery("select * from public.user where username='" + username + "' AND password='" + password + "'");
-            if(rs.next()){
-                System.out.println("ligne");
+            ArrayList<String> array = new ArrayList<String>();
+            while(rs.next()){
+                System.out.println(rs.getObject(1));
             }
         } catch (Exception e1) {
             System.out.println("can't connect to db");

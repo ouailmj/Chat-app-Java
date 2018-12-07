@@ -10,6 +10,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -18,7 +20,7 @@
 
 <AnchorPane prefHeight="499.0" prefWidth="755.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-background-image: url(&quot;file:/home/ouail/Documents/Chat-app-Java/src/friend2.jpg&quot;); -fx-background-size: 800 500;" styleClass="anshor" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Login">
     <children>
-        <Pane focusTraversable="true" layoutX="393.0" layoutY="75.0" prefHeight="374.0" prefWidth="300.0" style="-fx-background-color: rgba(119,120,132,0.9); -fx-background-radius: 8px; -fx-border-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 12,0.2, 1, 1);">
+        <Pane focusTraversable="true" layoutX="393.0" layoutY="75.0" prefHeight="396.0" prefWidth="300.0" style="-fx-background-color: rgba(119,120,132,0.9); -fx-background-radius: 8px; -fx-border-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 12,0.2, 1, 1);">
             <children>
                 <Label layoutX="92.0" layoutY="59.0" text="Welcome !" textFill="WHITE">
                     <font>
@@ -68,6 +70,16 @@
                   <Font size="12.0" />
                </font>
                 </JFXButton>
+            <TextField fx:id="erreur" layoutX="20.0" layoutY="316.0" prefHeight="28.0" prefWidth="277.0" style="-fx-background-color: rgba(0,0,0,0); -fx-alignment: center;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="gif" fitHeight="73.0" fitWidth="78.0" layoutX="109.0" layoutY="330.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0;">
+               <image>
+                  <Image url="@../../Spinner-1s-200px.gif" />
+               </image>
+            </ImageView>
             </children>
          <effect>
             <Blend mode="SCREEN" opacity="0.0" />
