@@ -34,3 +34,10 @@
 .cancel:hover{
     -fx-background-color: #c41805;
 }
+.forget{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.forget:hover{
+        -fx-text-fill : #e5efff;
+        -fx-background-color: rgba(0,0,0,0);
+}

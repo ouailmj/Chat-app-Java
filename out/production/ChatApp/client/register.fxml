@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -18,14 +19,14 @@
     <children>
         <Pane layoutX="335.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="469.0" style="-fx-background-color: rgba(119,120,132,0.8); -fx-border-radius: 8px; -fx-background-radius: 8px;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="10.0">
             <children>
-                <Label layoutX="118.0" layoutY="383.0" text="gender" textFill="WHITE">
+                <Label layoutX="122.0" layoutY="357.0" text="gender" textFill="WHITE">
                     <font>
                         <Font name="Verdana" size="18.0" />
                     </font>
                 </Label>
-                <JFXRadioButton fx:id="male" ellipsisString="" layoutX="198.0" layoutY="386.0" onAction="#selectMale" text="Male" textFill="WHITE" />
-                <JFXRadioButton fx:id="femal" layoutX="268.0" layoutY="386.0" onAction="#selectFemal" text="Female" textFill="#fefeff" textOverrun="CLIP" />
-                <JFXButton layoutX="57.0" layoutY="433.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" stylesheets="@../text.css" text="SIgn Up !" textFill="WHITE">
+                <JFXRadioButton fx:id="male" ellipsisString="" layoutX="202.0" layoutY="360.0" onAction="#selectMale" text="Male" textFill="WHITE" />
+                <JFXRadioButton fx:id="femal" layoutX="272.0" layoutY="360.0" onAction="#selectFemal" text="Female" textFill="#fefeff" textOverrun="CLIP" />
+                <JFXButton fx:id="signup" layoutX="57.0" layoutY="410.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" stylesheets="@../text.css" text="SIgn Up !" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS" size="18.0" />
                     </font>
@@ -109,15 +110,16 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <JFXButton id="cancel" layoutX="237.0" layoutY="433.0" onAction="#retour" prefHeight="33.0" prefWidth="175.0" styleClass="cancel" stylesheets="@../text.css" text="Cancel" textFill="WHITE">
+            <JFXButton id="cancel" fx:id="cancelAction" layoutX="237.0" layoutY="410.0" onAction="#retour" prefHeight="33.0" prefWidth="175.0" styleClass="cancel" stylesheets="@../text.css" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Trebuchet MS" size="18.0" />
                </font>
             </JFXButton>
-            <TextField id="erreur" fx:id="erreur" layoutX="97.0" layoutY="355.0" prefHeight="28.0" prefWidth="302.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-inner-color: red;" stylesheets="@../text.css">
+            <TextField id="erreur" fx:id="erreur" layoutX="87.0" layoutY="384.0" prefHeight="28.0" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-inner-color: red; -fx-alignment: center;" stylesheets="@../text.css">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></TextField>
+            <ImageView fx:id="imageView" fitHeight="57.0" fitWidth="65.0" layoutX="191.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </Pane>
         <Button fx:id="close" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" layoutX="871.0" mnemonicParsing="false" onAction="#closeprog" prefHeight="18.0" prefWidth="34.0" style="-fx-background-color: rgb(201, 209, 221,0.6);" text="X" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS">

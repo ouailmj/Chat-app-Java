@@ -1,7 +1,10 @@
 package client;
 
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +34,15 @@ public class Register {
     public JFXRadioButton femal;
 
     @FXML
+    public ImageView imageView;
+
+    @FXML
+    public JFXButton cancelAction;
+
+    @FXML
+    public JFXButton signup;
+
+    @FXML
     TextField usernameRegister;
     @FXML
     PasswordField passwordRegister;
@@ -36,6 +52,8 @@ public class Register {
     TextField emailRegister;
     @FXML
     TextField erreur;
+
+    private Image image = new Image(getClass().getResourceAsStream("load.gif"));
 
     void ouvrirFenetre(ActionEvent event,String str) throws IOException{
 
@@ -76,6 +94,22 @@ public class Register {
         erreur.setText("Veuillez remplir tout les champs");
     }
 
+    Service<Boolean> databaseLoading = new Service<Boolean>(){
+
+        @Override
+        protected Task<Boolean> createTask() {
+            return new Task<Boolean>(){
+
+                @Override
+                protected Boolean call() throws Exception {
+                    imageView.setStyle("-fx-opacity:0");
+                    imageView.setImage(image);
+                    return true;
+                }
+            };
+        }
+    };
+
     @FXML
     void inscription(ActionEvent event) {
         String passwordRegisterText = passwordRegister.getText();
@@ -92,9 +126,11 @@ public class Register {
                     try {
                         boolean sexe = true;
                         sexe = male.isSelected();
-
+                        databaseLoading.reset();
+                        databaseLoading.start();
+                        cancelAction.setDisable(true);
+                        signup.setDisable(true);
                         register = ChatMain.chatClient.register(usernameRegister.getText(), passwordRegister.getText(),confirmPassword.getText(),emailRegister.getText(),sexe);
-
                         if(!register){
                             erreur.setText("User existe deja");
                         }
@@ -109,7 +145,10 @@ public class Register {
 
                             mainWindow.setScene(newScene);
                         }
-
+                        databaseLoading.cancel();
+                        imageView.setStyle("-fx-opacity:0");
+                        cancelAction.setDisable(false);
+                        signup.setDisable(false);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (UnsupportedEncodingException e) {

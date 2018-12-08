@@ -28,6 +28,12 @@ public class Login {
     public ImageView imageView;
 
     @FXML
+    public JFXButton button;
+
+    @FXML
+    public JFXButton buttonSignIn;
+
+    @FXML
     private TextField user;
 
     @FXML
@@ -46,6 +52,7 @@ public class Login {
 
                 @Override
                 protected Boolean call() throws Exception {
+                    imageView.setStyle("-fx-opacity:0");
                     imageView.setImage(image);
                     return registered;
                 }
@@ -63,16 +70,19 @@ public class Login {
         else{
             databaseLoading.reset();
             databaseLoading.start();
+            button.setDisable(true);
+            buttonSignIn.setDisable(true);
             imageView.setStyle("-fx-opacity:1");
             registered = ChatMain.chatClient.connect(user.getText(), password.getText());
             if (!registered) {
-                imageView.setStyle("-fx-opacity:0");
                 erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
                 erreur.setText("Username ou mot de pass incorrect");
             } else {
-                imageView.setStyle("-fx-opacity:0");
                 App.loadScreen(event);
             }
+            imageView.setStyle("-fx-opacity:0");
+            button.setDisable(false);
+            buttonSignIn.setDisable(false);
         }
     }
 
