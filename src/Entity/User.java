@@ -19,10 +19,11 @@ public class User {
     final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSX";
     final SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT);
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email ,String sexe) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.sexe = Boolean.parseBoolean(sexe);
         System.out.println("nouvelle utilisateur");
     }
 
@@ -69,12 +70,12 @@ public class User {
 
     public boolean Verification_data_user(String username,String password) throws SQLException, ParseException {
         ApiCrud crud = new ApiCrud();
-        return crud.get_data_user(username, password) != null;
+        return crud.get_data_user(username,password) != null;
     }
 
     public boolean Add_data_user() throws SQLException, ParseException {
         ApiCrud crud = new ApiCrud();
-        return crud.add_data_user(this.username,this.password,this.email);
+        return crud.add_data_user(this.username,this.password,this.email,this.sexe);
     }
 
     public static void main(String[] args) throws SQLException, ParseException {

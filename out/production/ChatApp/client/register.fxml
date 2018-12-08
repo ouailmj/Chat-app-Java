@@ -23,8 +23,8 @@
                         <Font name="Verdana" size="18.0" />
                     </font>
                 </Label>
-                <JFXRadioButton ellipsisString="" layoutX="198.0" layoutY="386.0" text="Male" textFill="WHITE" />
-                <JFXRadioButton layoutX="268.0" layoutY="386.0" text="Female" textFill="#fefeff" textOverrun="CLIP" />
+                <JFXRadioButton fx:id="male" ellipsisString="" layoutX="198.0" layoutY="386.0" onAction="#selectMale" text="Male" textFill="WHITE" />
+                <JFXRadioButton fx:id="femal" layoutX="268.0" layoutY="386.0" onAction="#selectFemal" text="Female" textFill="#fefeff" textOverrun="CLIP" />
                 <JFXButton layoutX="57.0" layoutY="433.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: #7289da;" text="SIgn Up !" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS" size="18.0" />

@@ -40,8 +40,8 @@ public class Handler extends Thread {
                 else if(inLine.startsWith("register")){
                     String information = inLine.substring(9);
                     String[] infos = information.split(";");
-                    User user = new User(infos[0],infos[1],infos[3]);
-                    if(!user.Verification_data_user(infos[0],infos[1])){
+                    User user = new User(infos[0],infos[1],infos[3],infos[4]);
+                    if(!user.Verification_data_user(infos[0],null)){
                         user.Add_data_user();
                         out.println("unregistered");
                     }

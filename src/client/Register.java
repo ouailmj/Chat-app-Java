@@ -1,6 +1,7 @@
 package client;
 
 
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,12 @@ import java.util.regex.Pattern;
 public class Register {
 
     public static boolean register = false;
+
+    @FXML
+    public JFXRadioButton male;
+
+    @FXML
+    public JFXRadioButton femal;
 
     @FXML
     TextField usernameRegister;
@@ -51,25 +58,31 @@ public class Register {
         return matcher.find();
     }
 
+    public void Style(){
+        if(emailRegister.getText().trim().isEmpty()) {
+            emailRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+        }
+        if(usernameRegister.getText().trim().isEmpty()) {
+            usernameRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+        }
+        if(passwordRegister.getText().trim().isEmpty()) {
+            passwordRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+        }
+        if(confirmPassword.getText().trim().isEmpty()) {
+            confirmPassword.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+        }
+        if(!male.isSelected() && !femal.isSelected())
+            male.setSelected(true);
+        erreur.setText("Veuillez remplir tout les champs");
+    }
+
     @FXML
     void inscription(ActionEvent event) {
         String passwordRegisterText = passwordRegister.getText();
         String confirmPasswordText = confirmPassword.getText();
-        if(emailRegister.getText().trim().isEmpty() || passwordRegister.getText().trim().isEmpty() || confirmPassword.getText().trim().isEmpty() || usernameRegister.getText().trim().isEmpty()){
-            if(emailRegister.getText().trim().isEmpty()) {
-                emailRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            }
-            if(usernameRegister.getText().trim().isEmpty()) {
-                usernameRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            }
-            if(passwordRegister.getText().trim().isEmpty()) {
-                passwordRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            }
-            if(confirmPassword.getText().trim().isEmpty()) {
-                confirmPassword.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
-            }
-            erreur.setText("Veuillez remplir tout les champs");
-
+        if(emailRegister.getText().trim().isEmpty() || passwordRegister.getText().trim().isEmpty() || confirmPassword.getText().trim().isEmpty() || usernameRegister.getText().trim().isEmpty() || (!male.isSelected() && !femal.isSelected())
+        ){
+            Style();
         }else {
             if (passwordRegisterText.equals(confirmPasswordText)) {
                 if(!validate(emailRegister.getText())){
@@ -77,8 +90,11 @@ public class Register {
                 }
                 else {
                     try {
+                        boolean sexe = true;
+                        sexe = male.isSelected();
 
-                        register = ChatMain.chatClient.register(usernameRegister.getText(), passwordRegister.getText(),confirmPassword.getText(),emailRegister.getText());
+                        register = ChatMain.chatClient.register(usernameRegister.getText(), passwordRegister.getText(),confirmPassword.getText(),emailRegister.getText(),sexe);
+
                         if(!register){
                             erreur.setText("User existe deja");
                         }
@@ -123,4 +139,13 @@ public class Register {
         ouvrirFenetre(event,"login.fxml");
     }
 
+    @FXML
+    public void selectMale(ActionEvent actionEvent) {
+        femal.setSelected(false);
+    }
+
+    @FXML
+    public void selectFemal(ActionEvent actionEvent) {
+        male.setSelected(false);
+    }
 }

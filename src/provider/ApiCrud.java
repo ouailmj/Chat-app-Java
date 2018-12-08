@@ -8,17 +8,20 @@ import java.sql.SQLException;
 public class ApiCrud {
 
     public ApiCrud(){
-        System.out.println("connection base de donnée");
+        System.out.println( "connection base de donnée" );
     }
 
-    public String[] get_data_user(String username, String password){
+    public String[] get_data_user(String username, String password) throws SQLException {
 
         DB_connection db = new DB_connection();
         Connection con = db.get_Connection();
         String[] data = new String[8];
+
         try{
-            String query = "select * from public.user where username='" + username + "' AND password='" + password + "'";
+
+            String query = password == null ? "select * from " + Environment.userPath + " where username='" + username + "'" : "select * from " + Environment.userPath + " where username='" + username + "' AND password='" + password + "'";
             ResultSet rs = con.createStatement().executeQuery(query);
+
             if(rs.next()){
                     data[0] = rs.getString("id");
                     data[1] = rs.getString("username");
@@ -28,36 +31,55 @@ public class ApiCrud {
                     data[5] = rs.getString("sexe");
                     data[6] = rs.getString("photo");
                     data[7] = rs.getString("birth");
+
+                    rs.close();
+                    db.close_Connection();
+                    con.close();
+
                 return data;
             }
             else{
+                rs.close();
                 return null;
             }
+
         }catch (Exception e){
                 System.out.println(e);
+        }finally {
+            System.out.println("close connection");
+            db.close_Connection();
+            con.close();
         }
+
         return null;
     }
 
-    public boolean add_data_user(String username, String password , String email) {
+    public boolean add_data_user(String username, String password , String email , boolean sexe) throws SQLException {
+
         DB_connection db = new DB_connection();
         Connection con = db.get_Connection();
         try {
-            String query = "INSERT INTO public.user (username,password,email) VALUES ('" + username + "', '" + password + "', '" + email + "')";
+
+            String query = "INSERT INTO " + Environment.userPath + " (username,password,email,sexe) VALUES ('" + username + "', '" + password + "', '" + email + "', '" + sexe +"')";
+
             PreparedStatement post = con.prepareStatement(query);
             post.executeUpdate();
             post.close();
-            db.close_Connection();
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            System.out.println("close connection");
+            db.close_Connection();
+            con.close();
         }
         return false;
     }
 
-        public static void main(String[] args){
-        ApiCrud crud = new ApiCrud();
-        System.out.println(crud.add_data_user("aniss","dqouail1","aniss@gmail.com"));
-    }
+        public static void main(String[] args) throws SQLException {
+            ApiCrud crud = new ApiCrud();
+            System.out.println(crud.add_data_user("aniss","dqouail1dq","dqs",true));
+        }
 
 }
