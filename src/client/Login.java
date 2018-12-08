@@ -1,6 +1,8 @@
 package client;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +38,21 @@ public class Login {
 
     private Image image = new Image(getClass().getResourceAsStream("load.gif"));
 
+    Service<Boolean> databaseLoading = new Service<Boolean>(){
+
+        @Override
+        protected Task<Boolean> createTask() {
+            return new Task<Boolean>(){
+
+                @Override
+                protected Boolean call() throws Exception {
+                    imageView.setImage(image);
+                    return registered;
+                }
+            };
+        }
+    };
+
     @FXML
     void signIn(ActionEvent event) throws IOException {
         String line = null;
@@ -44,13 +61,15 @@ public class Login {
             erreur.setText("Veuillez remplir tout les champs");
         }
         else{
-            imageView.setImage(image);
+            databaseLoading.reset();
+            databaseLoading.start();
+            imageView.setStyle("-fx-opacity:1");
             registered = ChatMain.chatClient.connect(user.getText(), password.getText());
             if (!registered) {
                 imageView.setStyle("-fx-opacity:0");
                 erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
                 erreur.setText("Username ou mot de pass incorrect");
-             } else {
+            } else {
                 imageView.setStyle("-fx-opacity:0");
                 App.loadScreen(event);
             }
