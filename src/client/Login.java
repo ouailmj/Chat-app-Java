@@ -1,6 +1,6 @@
 package client;
 
-
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,7 +20,10 @@ public class Login {
     public static boolean registered = false;
 
     @FXML
-    private AnchorPane load;
+    public JFXButton signin;
+
+    @FXML
+    public ImageView imageView;
 
     @FXML
     private TextField user;
@@ -30,21 +34,24 @@ public class Login {
     @FXML
     private TextField erreur;
 
+    private Image image = new Image(getClass().getResourceAsStream("load.gif"));
+
     @FXML
     void signIn(ActionEvent event) throws IOException {
         String line = null;
         if(user.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
-            load.setStyle("visibility:true");
             erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
             erreur.setText("Veuillez remplir tout les champs");
         }
         else{
-            load.setStyle("visibility:true");
+            imageView.setImage(image);
             registered = ChatMain.chatClient.connect(user.getText(), password.getText());
             if (!registered) {
+                imageView.setStyle("-fx-opacity:0");
                 erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
                 erreur.setText("Username ou mot de pass incorrect");
              } else {
+                imageView.setStyle("-fx-opacity:0");
                 App.loadScreen(event);
             }
         }

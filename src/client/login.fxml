@@ -10,6 +10,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -57,7 +58,7 @@
                         <Insets left="10.0" />
                     </padding>
                 </HBox>
-                <JFXButton layoutX="28.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#signIn" prefHeight="40.0" prefWidth="117.0" ripplerFill="WHITE" style="-fx-background-color: #7289da; -fx-background-radius: 5px;" text="Sign In" textFill="WHITE">
+                <JFXButton id="button" fx:id="button" layoutX="28.0" layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#signIn" prefHeight="40.0" prefWidth="117.0" ripplerFill="WHITE" stylesheets="@../text.css" text="Sign In" textFill="WHITE">
                     <font>
                         <Font name="Microsoft Sans Serif" size="16.0" />
                     </font>
@@ -73,7 +74,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <AnchorPane fx:id="load" layoutX="118.0" layoutY="316.0" prefHeight="57.0" prefWidth="65.0" style="-fx-background-image: url(&quot;file:/home/ouail/Documents/Chat-app-Java/Spinner-1s-200px.gif&quot;); visibility: false;" />
+            <ImageView fx:id="imageView" fitHeight="57.0" fitWidth="65.0" layoutX="126.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
             </children>
          <effect>
             <Blend mode="SCREEN" opacity="0.0" />
@@ -105,7 +106,7 @@
                         </Label>
                     </children>
                 </TextFlow>
-                <JFXButton layoutX="75.0" layoutY="309.0" onAction="#signUp" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #e6e6e6;" text="Sign Up Here" textFill="#666666">
+                <JFXButton id="buttonSignIn" fx:id="buttonSignIn" layoutX="75.0" layoutY="309.0" onAction="#signUp" prefHeight="35.0" prefWidth="150.0" styleClass="buttonSignIn" stylesheets="@../text.css" text="Sign Up Here" textFill="#666666">
                     <font>
                         <Font name="Arial" size="18.0" />
                     </font>

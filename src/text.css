@@ -10,3 +10,27 @@
     -fx-text-inner-color: white;
     -fx-text-fill: rgb(255, 255,255);
 }
+
+.button{
+    -fx-background-color:  #7289da;
+    -fx-background-radius:  3px;
+     transition: all 1s;
+}
+
+.button:hover{
+    -fx-background-color: #a5acb7;
+    -fx-text-fill : #e5efff;
+}
+
+#buttonSignIn {
+    -fx-background-color: #e6e6e6;
+}
+#buttonSignIn:hover{
+    -fx-background-color: #b5d0fc;
+}
+.cancel{
+    -fx-background-color: #ef572d;
+}
+.cancel:hover{
+    -fx-background-color: #c41805;
+}

@@ -25,7 +25,7 @@
                 </Label>
                 <JFXRadioButton fx:id="male" ellipsisString="" layoutX="198.0" layoutY="386.0" onAction="#selectMale" text="Male" textFill="WHITE" />
                 <JFXRadioButton fx:id="femal" layoutX="268.0" layoutY="386.0" onAction="#selectFemal" text="Female" textFill="#fefeff" textOverrun="CLIP" />
-                <JFXButton layoutX="57.0" layoutY="433.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" style="-fx-background-color: #7289da;" text="SIgn Up !" textFill="WHITE">
+                <JFXButton layoutX="57.0" layoutY="433.0" onAction="#inscription" prefHeight="33.0" prefWidth="168.0" stylesheets="@../text.css" text="SIgn Up !" textFill="WHITE">
                     <font>
                         <Font name="Trebuchet MS" size="18.0" />
                     </font>
@@ -109,7 +109,7 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <JFXButton layoutX="237.0" layoutY="433.0" onAction="#retour" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #ef572d;" text="Cancel" textFill="WHITE">
+            <JFXButton id="cancel" layoutX="237.0" layoutY="433.0" onAction="#retour" prefHeight="33.0" prefWidth="175.0" styleClass="cancel" stylesheets="@../text.css" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Trebuchet MS" size="18.0" />
                </font>
