@@ -3,7 +3,6 @@ package client;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
-import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,35 +12,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import provider.Environment;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class Register {
+public class Register implements Environment {
 
     public static boolean register = false;
 
     @FXML
-    public JFXRadioButton male;
-
+    private JFXRadioButton male;
     @FXML
-    public JFXRadioButton femal;
-
+    private JFXRadioButton femal;
     @FXML
-    public ImageView imageView;
-
+    private ImageView imageView;
     @FXML
-    public JFXButton cancelAction;
-
+    private JFXButton cancelAction;
     @FXML
-    public JFXButton signup;
-
+    private JFXButton signup;
     @FXML
     TextField usernameRegister;
     @FXML
@@ -52,24 +44,26 @@ public class Register {
     TextField emailRegister;
     @FXML
     TextField erreur;
-
-    private Image image = new Image(getClass().getResourceAsStream("load.gif"));
+    @FXML
+    public void initialize() {
+        imageView.setVisible(false);
+    }
 
     void ouvrirFenetre(ActionEvent event,String str) throws IOException{
 
-        Parent signUpWindow;
-        signUpWindow = FXMLLoader.load(getClass().getResource(str));
+        imageView.setVisible(true);
+        Parent signUpWindow = FXMLLoader.load(getClass().getResource(str));
+        Scene scene = new Scene(signUpWindow);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
 
         Stage mainWindow;
         mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        Scene newScene = new Scene(signUpWindow);
-
-        mainWindow.setScene(newScene);
+        mainWindow.close();
+        imageView.setVisible(false);
     }
-
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public static boolean validate(String emailStr) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
@@ -77,38 +71,21 @@ public class Register {
     }
 
     public void Style(){
+        String css = "-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px";
         if(emailRegister.getText().trim().isEmpty()) {
-            emailRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+            emailRegister.getParent().setStyle(css);
         }
         if(usernameRegister.getText().trim().isEmpty()) {
-            usernameRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+            usernameRegister.getParent().setStyle(css);
         }
         if(passwordRegister.getText().trim().isEmpty()) {
-            passwordRegister.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+            passwordRegister.getParent().setStyle(css);
         }
         if(confirmPassword.getText().trim().isEmpty()) {
-            confirmPassword.getParent().setStyle("-fx-border-color:red;-fx-background-color:#565a60;-fx-border-radius:5px;-fx-background-radius: 5px");
+            confirmPassword.getParent().setStyle(css);
         }
-        if(!male.isSelected() && !femal.isSelected())
-            male.setSelected(true);
         erreur.setText("Veuillez remplir tout les champs");
     }
-
-    Service<Boolean> databaseLoading = new Service<Boolean>(){
-
-        @Override
-        protected Task<Boolean> createTask() {
-            return new Task<Boolean>(){
-
-                @Override
-                protected Boolean call() throws Exception {
-                    imageView.setStyle("-fx-opacity:0");
-                    imageView.setImage(image);
-                    return true;
-                }
-            };
-        }
-    };
 
     @FXML
     void inscription(ActionEvent event) {
@@ -123,39 +100,51 @@ public class Register {
                     erreur.setText("Email incorrect");
                 }
                 else {
-                    try {
-                        boolean sexe = true;
-                        sexe = male.isSelected();
-                        databaseLoading.reset();
-                        databaseLoading.start();
+                        boolean sexe = male.isSelected();
+                        Task<Boolean> RegisterTask = new Task<Boolean>() {
+                            @Override
+                            protected Boolean call() throws Exception {
+                                return ChatMain.chatClient.register(usernameRegister.getText(), passwordRegister.getText(),confirmPassword.getText(),emailRegister.getText(), sexe);
+                            }
+                        };
+                        RegisterTask.setOnSucceeded(e -> {
+                            if (RegisterTask.getValue()) {
+                                try {
+                                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+
+                                    Parent root = (Parent)fxmlLoader.load();
+                                    Login controller = fxmlLoader.<Login>getController();
+                                    controller.setUser(usernameRegister.getText());
+                                    Scene scene = new Scene(root);
+                                    Stage stage = new Stage();
+                                    stage.setScene(scene);
+                                    stage.initStyle(StageStyle.UNDECORATED);
+                                    stage.show();
+
+                                    Stage mainWindow;
+                                    mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    mainWindow.close();
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                            } else {
+                                erreur.setText("User existe deja");
+                            }
+                            imageView.setVisible(false);
+                            cancelAction.setDisable(false);
+                            signup.setDisable(false);
+                        });
+
+                        RegisterTask.setOnFailed(e -> {
+                            erreur.setText("Erreur System!!!");
+                            imageView.setVisible(false);
+                        });
+                        Thread thread = new Thread(RegisterTask);
+                        thread.setDaemon(true);
+                        imageView.setVisible(true);
                         cancelAction.setDisable(true);
                         signup.setDisable(true);
-                        register = ChatMain.chatClient.register(usernameRegister.getText(), passwordRegister.getText(),confirmPassword.getText(),emailRegister.getText(),sexe);
-                        if(!register){
-                            erreur.setText("User existe deja");
-                        }
-                        else{
-                            Parent signUpWindow;
-                            signUpWindow = FXMLLoader.load(getClass().getResource("login.fxml"));
-
-                            Stage mainWindow;
-                            mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                            Scene newScene = new Scene(signUpWindow);
-
-                            mainWindow.setScene(newScene);
-                        }
-                        databaseLoading.cancel();
-                        imageView.setStyle("-fx-opacity:0");
-                        cancelAction.setDisable(false);
-                        signup.setDisable(false);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                        thread.start();
                 }
             } else {
                 passwordRegister.setStyle("-fx-text-fill: rgb(211, 76, 76);-fx-background-color:transparent");

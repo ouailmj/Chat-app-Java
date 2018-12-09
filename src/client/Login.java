@@ -1,7 +1,8 @@
 package client;
 
+import Local_Environement.Dialog;
 import com.jfoenix.controls.JFXButton;
-import javafx.concurrent.Service;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,9 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -22,83 +24,89 @@ public class Login {
     public static boolean registered = false;
 
     @FXML
-    public JFXButton signin;
-
+    private ImageView imageView;
     @FXML
-    public ImageView imageView;
-
+    private JFXButton button;
     @FXML
-    public JFXButton button;
-
-    @FXML
-    public JFXButton buttonSignIn;
-
+    private JFXButton buttonSignIn;
     @FXML
     private TextField user;
-
     @FXML
     private PasswordField password;
-
     @FXML
     private TextField erreur;
+    @FXML
+    private StackPane mainPane;
 
-    private Image image = new Image(getClass().getResourceAsStream("load.gif"));
+    private String usernameRegister;
 
-    Service<Boolean> databaseLoading = new Service<Boolean>(){
-
-        @Override
-        protected Task<Boolean> createTask() {
-            return new Task<Boolean>(){
-
-                @Override
-                protected Boolean call() throws Exception {
-                    imageView.setStyle("-fx-opacity:0");
-                    imageView.setImage(image);
-                    return registered;
-                }
-            };
-        }
-    };
+    @FXML
+    public void initialize() {
+        imageView.setVisible(false);
+        Platform.runLater(() -> {
+            if (this.usernameRegister.length() == 0 || !this.usernameRegister.isEmpty()) {
+                Dialog.loadDialog(usernameRegister,mainPane);
+                usernameRegister = "";
+            }
+        });
+    }
 
     @FXML
     void signIn(ActionEvent event) throws IOException {
-        String line = null;
+
         if(user.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
             erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
             erreur.setText("Veuillez remplir tout les champs");
         }
         else{
-            databaseLoading.reset();
-            databaseLoading.start();
+            Task<Boolean> loginTask = new Task<Boolean>() {
+                @Override
+                protected Boolean call() throws Exception {
+                    return ChatMain.chatClient.connect(user.getText(), password.getText());
+                }
+            };
+            loginTask.setOnSucceeded(e -> {
+                if (loginTask.getValue()) {
+                    App.loadScreen(event);
+                } else {
+                    erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
+                    erreur.setText("Username ou mot de pass incorrect");
+                }
+                imageView.setVisible(false);
+                button.setDisable(false);
+                buttonSignIn.setDisable(false);
+            });
+            loginTask.setOnFailed(e -> {
+                erreur.setText("Erreur System!!!");
+                imageView.setVisible(false);
+            });
+            Thread thread = new Thread(loginTask);
+            thread.setDaemon(true);
+            imageView.setVisible(true);
             button.setDisable(true);
             buttonSignIn.setDisable(true);
-            imageView.setStyle("-fx-opacity:1");
-            registered = ChatMain.chatClient.connect(user.getText(), password.getText());
-            if (!registered) {
-                erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
-                erreur.setText("Username ou mot de pass incorrect");
-            } else {
-                App.loadScreen(event);
-            }
-            imageView.setStyle("-fx-opacity:0");
-            button.setDisable(false);
-            buttonSignIn.setDisable(false);
+            thread.start();
         }
+    }
+
+    public void setUser(String user_id){
+        this.usernameRegister = user_id;
     }
 
     @FXML
     void signUp(ActionEvent event) throws IOException {
-
-        Parent signUpWindow;
-        signUpWindow = FXMLLoader.load(getClass().getResource("register.fxml"));
+        imageView.setVisible(true);
+        Parent signUpWindow = FXMLLoader.load(getClass().getResource("register.fxml"));
+        Scene scene = new Scene(signUpWindow);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
 
         Stage mainWindow;
         mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        Scene newScene = new Scene(signUpWindow);
-
-        mainWindow.setScene(newScene);
-
+        mainWindow.close();
+        imageView.setVisible(false);
     }
 
     @FXML
@@ -107,4 +115,5 @@ public class Login {
         mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainWindow.close();
     }
+
 }

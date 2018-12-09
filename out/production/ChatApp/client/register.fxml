@@ -9,10 +9,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="907.0" style="-fx-background-image: url('file:/home/ouail/Documents/Chat-app-Java/src/register3.jpg.jpg'); -fx-background-size: 907 500;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Register">
@@ -119,7 +121,10 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></TextField>
-            <ImageView fx:id="imageView" fitHeight="57.0" fitWidth="65.0" layoutX="191.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView" fitHeight="57.0" fitWidth="65.0" layoutX="191.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@load.gif" />
+               </image></ImageView>
             </children>
         </Pane>
         <Button fx:id="close" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" layoutX="871.0" mnemonicParsing="false" onAction="#closeprog" prefHeight="18.0" prefWidth="34.0" style="-fx-background-color: rgb(201, 209, 221,0.6);" text="X" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS">
@@ -130,5 +135,6 @@
                 <Font size="17.0" />
             </font>
         </Button>
+      <StackPane fx:id="mainPane" layoutX="199.0" layoutY="183.0" prefHeight="135.0" prefWidth="106.0" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="602.0" AnchorPane.topAnchor="183.0" />
     </children>
 </AnchorPane>

@@ -38,6 +38,12 @@
     -fx-background-color: rgba(0,0,0,0);
 }
 .forget:hover{
-        -fx-text-fill : #e5efff;
-        -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill : #e5efff;
+    -fx-background-color: rgba(0,0,0,0);
+}
+.boutton_fermer{
+    -fx-background-color: rgba(201, 209, 221, 0.6);
+}
+.boutton_fermer:hover{
+        -fx-background-color: rgba(201, 209, 221, 0.9);
 }

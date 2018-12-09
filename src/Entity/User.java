@@ -4,7 +4,6 @@ import provider.ApiCrud;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User {
@@ -16,8 +15,6 @@ public class User {
     protected boolean sexe;
     protected String photo;
     protected Date birth;
-    final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSX";
-    final SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT);
 
     public User(String username, String password, String email ,String sexe) {
         this.username = username;
@@ -82,4 +79,31 @@ public class User {
         User user = new User("ouail","ouaillsq");
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setSexe(boolean sexe) {
+        this.sexe = sexe;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
 }
