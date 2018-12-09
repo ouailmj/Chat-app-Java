@@ -41,12 +41,12 @@ public class Login {
         else{
             load.setStyle("visibility:true");
             registered = ChatMain.chatClient.connect(user.getText(), password.getText());
-            if (!registered) {
-                erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
-                erreur.setText("Username ou mot de pass incorrect");
-             } else {
+            //if (!registered) {
+               // erreur.setStyle("-fx-text-inner-color:red;-fx-background-color:transparent");
+                //erreur.setText("Username ou mot de pass incorrect");
+             //} else {
                 App.loadScreen(event);
-            }
+            //}
         }
     }
 
