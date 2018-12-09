@@ -1,5 +1,5 @@
 /.metadata/
 /.recommenders/
 .idea/workspace.xml
-out/production/ChatApp/client/Register$1.class
-out/production/ChatApp/client/Register.class
+./out/*
+./.idea/workspace.xml
