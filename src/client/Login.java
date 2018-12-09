@@ -44,7 +44,7 @@ public class Login {
     public void initialize() {
         imageView.setVisible(false);
         Platform.runLater(() -> {
-            if (this.usernameRegister.length() == 0 || !this.usernameRegister.isEmpty()) {
+            if (this.usernameRegister != null || !this.usernameRegister.isEmpty()) {
                 Dialog.loadDialog(usernameRegister,mainPane);
                 usernameRegister = "";
             }

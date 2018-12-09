@@ -127,7 +127,7 @@
                </image></ImageView>
             </children>
         </Pane>
-        <Button fx:id="close" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" layoutX="871.0" mnemonicParsing="false" onAction="#closeprog" prefHeight="18.0" prefWidth="34.0" style="-fx-background-color: rgb(201, 209, 221,0.6);" text="X" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS">
+        <Button fx:id="close" alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" layoutX="871.0" mnemonicParsing="false" onAction="#closeprog" prefHeight="18.0" prefWidth="34.0" styleClass="boutton_fermer" stylesheets="@../text.css" text="X" textAlignment="CENTER" textOverrun="LEADING_WORD_ELLIPSIS">
             <cursor>
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
