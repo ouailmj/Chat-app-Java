@@ -17,7 +17,7 @@ public class ChatClient {
 
     ChatClient() throws IOException {
 
-        Socket socket = new Socket("127.0.0.1", 9010);
+        Socket socket = new Socket("127.0.0.1", 9011);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
     }
